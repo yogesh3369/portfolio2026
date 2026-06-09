@@ -50,10 +50,6 @@ export const SkillsSection = () => {
 
   return (
     <section id="skills" className="relative z-1 min-h-screen py-20 sm:py-28 px-5 sm:px-8 md:px-10">
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-5 text-[100px] text-black/5 select-none pointer-events-none">✳︎</div>
-      <div className="absolute bottom-40 right-5 text-[90px] text-black/5 select-none pointer-events-none">✳︎</div>
-      
       <div className="max-w-5xl mx-auto">
         <h2
           className="text-[36px] sm:text-[48px] md:text-[56px] mb-4 tracking-tight"

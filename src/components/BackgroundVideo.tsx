@@ -109,7 +109,7 @@ export const BackgroundVideo = () => {
         className="fixed inset-0 w-full h-full z-[-1] pointer-events-none transition-opacity duration-700"
         style={{
           background: 'linear-gradient(135deg, #d6d3cc 0%, #cdc9c1 50%, #d2cfc7 100%)',
-          opacity: showVideo ? 0 : 0.82,
+          opacity: showVideo ? 0 : 0.45,
         }}
       />
     </>

@@ -3,10 +3,6 @@ import { OOUXProcess } from './OOUXProcess';
 export const AboutSection = () => {
   return (
     <section id="about" className="relative z-1 min-h-screen py-20 sm:py-28 px-5 sm:px-8 md:px-10">
-      {/* Decorative elements */}
-      <div className="absolute top-32 right-10 text-[120px] text-black/5 select-none pointer-events-none">✳︎</div>
-      <div className="absolute bottom-32 left-10 text-[80px] text-black/5 select-none pointer-events-none">✳︎</div>
-      
       <div className="max-w-6xl mx-auto">
         <h2
           className="text-[36px] sm:text-[48px] md:text-[56px] mb-8 tracking-tight"

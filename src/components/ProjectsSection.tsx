@@ -4,9 +4,6 @@ import { ProjectCard } from './ProjectCard';
 export const ProjectsSection = () => {
   return (
     <section id="work" className="relative z-1 min-h-screen py-20 sm:py-28 px-5 sm:px-8 md:px-10">
-      {/* Decorative elements */}
-      <div className="absolute top-24 right-16 text-[110px] text-black/5 select-none pointer-events-none hidden md:block">✳︎</div>
-      
       <div className="max-w-6xl mx-auto">
         <h2
           className="text-[36px] sm:text-[48px] md:text-[56px] mb-4 tracking-tight"

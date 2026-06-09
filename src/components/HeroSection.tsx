@@ -31,31 +31,58 @@ export const HeroSection = () => {
 
   return (
     <section className="relative z-1 h-screen flex flex-col justify-end pb-12 md:justify-center md:pb-0 px-5 sm:px-8 md:px-10 overflow-hidden">
-      <div className="max-w-xl relative z-10">
-        {/* Blurred intro label */}
+      <div className="max-w-2xl relative z-10">
+        {/* Eyebrow - small, subtle label */}
         <div
-          className="pointer-events-none select-none mb-5 sm:mb-6"
+          className="mb-3 sm:mb-4 tracking-wide uppercase"
           style={{
-            fontSize: 'clamp(18px, 4vw, 26px)',
-            lineHeight: '1.3',
-            fontWeight: 400,
-            color: '#000',
-            filter: 'blur(4px)',
+            fontSize: 'clamp(11px, 2vw, 13px)',
+            fontWeight: 500,
+            color: 'rgba(0, 0, 0, 0.5)',
+            letterSpacing: '0.08em',
           }}
         >
-          Hey, I'm Yogesh,
-          <br />
+          Portfolio 2026
+        </div>
+
+        {/* Primary headline - large, bold hierarchy */}
+        <h1
+          className="mb-6 sm:mb-8"
+          style={{
+            fontSize: 'clamp(42px, 7vw, 72px)',
+            lineHeight: '1.1',
+            fontWeight: 500,
+            color: '#000',
+            letterSpacing: '-0.02em',
+            fontFamily: 'var(--font-heading)',
+          }}
+        >
+          Hey, I'm Yogesh
+        </h1>
+
+        {/* Role descriptor - medium weight, clear separation */}
+        <div
+          className="mb-8 sm:mb-10"
+          style={{
+            fontSize: 'clamp(20px, 4vw, 28px)',
+            lineHeight: '1.4',
+            fontWeight: 400,
+            color: 'rgba(0, 0, 0, 0.85)',
+          }}
+        >
           Product Designer — systems thinker, OOUX practitioner
         </div>
 
-        {/* Typewriter text */}
+        {/* Typewriter text - body copy with breathing room */}
         <p
-          className="text-black mb-5 sm:mb-6"
+          className="text-black mb-8 sm:mb-10"
           style={{
-            fontSize: 'clamp(18px, 4vw, 26px)',
-            lineHeight: '1.35',
+            fontSize: 'clamp(16px, 3.5vw, 20px)',
+            lineHeight: '1.6',
             fontWeight: 400,
-            minHeight: '54px',
+            color: 'rgba(0, 0, 0, 0.75)',
+            minHeight: '64px',
+            maxWidth: '580px',
           }}
         >
           {displayed}
