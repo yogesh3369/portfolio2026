@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const SENSITIVITY = 0.8;
 
 export const BackgroundVideo = () => {
+  const location = useLocation();
   const videoRef = useRef<HTMLVideoElement>(null);
   const prevXRef = useRef<number>(0);
   const targetTimeRef = useRef<number>(0);
@@ -89,29 +91,33 @@ export const BackgroundVideo = () => {
         }}
       />
 
-      {/* Video background - always visible, blurred into texture when scrolled past hero */}
-      <video
-        ref={videoRef}
-        className="fixed inset-0 w-full h-full object-cover z-[-1] transition-[filter,transform] duration-700"
-        style={{ 
-          objectPosition: '70% center',
-          filter: showVideo ? 'none' : 'blur(28px) saturate(0.9)',
-          transform: showVideo ? 'scale(1)' : 'scale(1.1)',
-        }}
-        muted
-        playsInline
-        preload="auto"
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260530_042513_df96a13b-6155-4f6e-8b93-c9dee66fba08.mp4"
-      />
+      {/* Video background - hidden on case study pages */}
+      {location.pathname === '/' && (
+        <>
+          <video
+            ref={videoRef}
+            className="fixed inset-0 w-full h-full object-cover z-[-1] transition-[filter,transform] duration-700"
+            style={{
+              objectPosition: '70% center',
+              filter: showVideo ? 'none' : 'blur(28px) saturate(0.9)',
+              transform: showVideo ? 'scale(1)' : 'scale(1.1)',
+            }}
+            muted
+            playsInline
+            preload="auto"
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260530_042513_df96a13b-6155-4f6e-8b93-c9dee66fba08.mp4"
+          />
 
-      {/* Warm scrim that fades in on content sections to soften the figure into abstract texture */}
-      <div
-        className="fixed inset-0 w-full h-full z-[-1] pointer-events-none transition-opacity duration-700"
-        style={{
-          background: 'linear-gradient(135deg, #d6d3cc 0%, #cdc9c1 50%, #d2cfc7 100%)',
-          opacity: showVideo ? 0 : 0.45,
-        }}
-      />
+          {/* Warm scrim that fades in on content sections to soften the figure into abstract texture */}
+          <div
+            className="fixed inset-0 w-full h-full z-[-1] pointer-events-none transition-opacity duration-700"
+            style={{
+              background: 'linear-gradient(135deg, #d6d3cc 0%, #cdc9c1 50%, #d2cfc7 100%)',
+              opacity: showVideo ? 0 : 0.45,
+            }}
+          />
+        </>
+      )}
     </>
   );
 };

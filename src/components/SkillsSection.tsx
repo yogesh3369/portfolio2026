@@ -50,7 +50,7 @@ export const SkillsSection = () => {
 
   return (
     <section id="skills" className="relative z-1 min-h-screen py-20 sm:py-28 px-5 sm:px-8 md:px-10">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-[1200px] mx-auto w-full">
         <h2
           className="text-[36px] sm:text-[48px] md:text-[56px] mb-4 tracking-tight"
           style={{ fontFamily: 'var(--font-heading)' }}

@@ -1,9 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const heroHeight = window.innerHeight;
+      
+      // Show background when scrolled 50% past hero section, matching the video fade
+      setIsScrolled(scrollPosition >= heroHeight * 0.5);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Call once to set initial state
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = ['Work', 'About', 'Skills', 'Beyond Design'];
 
@@ -19,69 +35,89 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-10 px-5 sm:px-8 py-4 sm:py-5 flex justify-between items-center">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 hover:opacity-60 transition-opacity">
-          <span
-            className="text-[21px] sm:text-[26px] tracking-tight text-black"
-            style={{ fontFamily: 'var(--font-heading)' }}
+      <div className="fixed top-4 sm:top-6 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none">
+        <nav className={`pointer-events-auto relative rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex justify-between items-center w-full max-w-[1200px] overflow-hidden transition-all duration-700 ${
+          isScrolled 
+            ? 'shadow-[0_12px_40px_-8px_rgba(0,0,0,0.2)] border border-black/10' 
+            : 'border border-transparent shadow-none'
+        }`}>
+          
+          {/* Blur, Color & Noise Background */}
+          <div 
+            className={`absolute inset-0 z-0 transition-opacity duration-700 pointer-events-none ${
+              isScrolled ? 'opacity-100' : 'opacity-0'
+            }`}
           >
-            Yogesh
-          </span>
-          <span
-            className="text-[25px] sm:text-[30px] text-black select-none"
-            style={{ letterSpacing: '-0.02em' }}
-          >
-            ✳︎
-          </span>
-        </Link>
+            <div className="absolute inset-0 bg-[#b5b2a8]/75 backdrop-blur-2xl" />
+            {/* Subtle white inner ring for glass highlight */}
+            <div className="absolute inset-0 ring-1 ring-inset ring-white/20 rounded-full" />
+            <div 
+              className="absolute inset-0 opacity-[0.12] mix-blend-overlay"
+              style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}
+            />
+          </div>
 
-        {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center text-[23px] text-black gap-1">
-          {navLinks.map((link, index) => (
-            <span key={link} className="flex items-center gap-1">
+          {/* Logo */}
+          <Link to="/" className="relative z-10 flex items-center gap-2 hover:opacity-60 transition-opacity ml-1 sm:ml-2">
+            <span
+              className="text-[20px] sm:text-[22px] tracking-tight text-black"
+              style={{ fontFamily: 'var(--font-heading)' }}
+            >
+              Yogesh
+            </span>
+            <span
+              className="text-[22px] sm:text-[24px] text-black select-none"
+              style={{ letterSpacing: '-0.02em' }}
+            >
+              ✳︎
+            </span>
+          </Link>
+
+          {/* Desktop Nav Links */}
+          <div className="relative z-10 hidden md:flex items-center text-[15px] lg:text-[16px] font-medium text-black/60 gap-1 lg:gap-2">
+            {navLinks.map((link) => (
               <button
+                key={link}
                 onClick={() => handleNavClick(link)}
-                className="hover:opacity-60 transition-opacity cursor-pointer"
+                className="hover:text-black px-4 py-2 rounded-full hover:bg-black/5 transition-all duration-300 cursor-pointer whitespace-nowrap"
               >
                 {link}
               </button>
-              {index < navLinks.length - 1 && <span>,</span>}
-            </span>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Desktop CTA */}
-        <button
-          onClick={() => handleNavClick('Contact')}
-          className="hidden md:block text-[23px] text-black underline underline-offset-2 hover:opacity-60 transition-opacity cursor-pointer"
-        >
-          Get in touch
-        </button>
+          {/* Desktop CTA */}
+          <button
+            onClick={() => handleNavClick('Contact')}
+            className="relative z-10 hidden md:block text-[15px] lg:text-[16px] text-black font-medium transition-all duration-300 cursor-pointer bg-transparent border border-black/10 hover:bg-black hover:text-white px-6 py-2.5 rounded-full mr-1 sm:mr-2"
+          >
+            Get in touch
+          </button>
 
-        {/* Mobile Hamburger */}
-        <button
-          className="md:hidden flex flex-col gap-[5px] z-20"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span
-            className={`w-6 h-[2px] bg-black transition-all duration-300 ${
-              mobileMenuOpen ? 'rotate-45 translate-y-[7px]' : ''
-            }`}
-          />
-          <span
-            className={`w-6 h-[2px] bg-black transition-all duration-300 ${
-              mobileMenuOpen ? 'opacity-0' : ''
-            }`}
-          />
-          <span
-            className={`w-6 h-[2px] bg-black transition-all duration-300 ${
-              mobileMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''
-            }`}
-          />
-        </button>
-      </nav>
+          {/* Mobile Hamburger */}
+          <button
+            className="relative z-10 md:hidden flex flex-col gap-[5px] p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span
+              className={`w-6 h-[2px] bg-black transition-all duration-300 ${
+                mobileMenuOpen ? 'rotate-45 translate-y-[7px]' : ''
+              }`}
+            />
+            <span
+              className={`w-6 h-[2px] bg-black transition-all duration-300 ${
+                mobileMenuOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span
+              className={`w-6 h-[2px] bg-black transition-all duration-300 ${
+                mobileMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''
+              }`}
+            />
+          </button>
+        </nav>
+      </div>
 
       {/* Mobile Menu Overlay */}
       <div

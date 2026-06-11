@@ -31,8 +31,9 @@ export const HeroSection = () => {
 
   return (
     <section className="relative z-1 h-screen flex flex-col justify-end pb-12 md:justify-center md:pb-0 px-5 sm:px-8 md:px-10 overflow-hidden">
-      <div className="max-w-2xl relative z-10">
-        {/* Eyebrow - small, subtle label */}
+      <div className="max-w-[1200px] mx-auto w-full relative z-10">
+        <div className="max-w-2xl relative z-10">
+          {/* Eyebrow - small, subtle label */}
         <div
           className="mb-3 sm:mb-4 tracking-wide uppercase"
           style={{
@@ -131,6 +132,7 @@ export const HeroSection = () => {
             </svg>
           </button>
         </div>
+      </div>
       </div>
     </section>
   );
