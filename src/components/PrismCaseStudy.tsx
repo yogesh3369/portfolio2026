@@ -15,49 +15,68 @@ export const PrismCaseStudy = () => {
 
         {/* Hero Section */}
         <div className="mb-20">
-          <div className="inline-flex items-center gap-2 mb-6 text-[13px] uppercase tracking-wider text-black/50">
-            <span>Prism</span>
-            <span>•</span>
-            <span>Design System</span>
-            <span>•</span>
-            <span>Case Study</span>
+          {/* Context tags */}
+          <div className="flex flex-wrap items-center gap-2 mb-8">
+            {['Design System', 'npm Package', '6-person team', '1.5 weeks solo', 'AI-assisted'].map((tag, i) => (
+              <span key={i} className="inline-flex items-center px-3 py-1 rounded-full bg-black/6 border border-black/10 text-[12px] text-black/55 uppercase tracking-wider">
+                {tag}
+              </span>
+            ))}
           </div>
 
           <h1
-            className="text-[48px] sm:text-[64px] md:text-[80px] mb-6 tracking-tight leading-[1.1]"
+            className="text-[52px] sm:text-[68px] md:text-[84px] mb-5 tracking-tight leading-[1.05]"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             How a designer with{' '}
-            <span className="text-black/40">zero coding experience</span>{' '}
+            <span className="text-black/35">zero coding experience</span>{' '}
             shipped Prism to npm
           </h1>
 
-          <p className="text-[18px] sm:text-[22px] leading-relaxed text-black/70 max-w-3xl mb-8">
-            When Indigo's product teams were wasting 34% of dev time rebuilding the same components,
-            I led a 6-designer team to build Prism — then solo-engineered its npm package using AI as
-            my pair programmer, despite having no formal engineering background.
+          <p className="text-[18px] sm:text-[21px] leading-[1.65] text-black/60 mb-10">
+            Indigo had six designers each maintaining their own Figma file, and three products with no
+            shared component library. Every sprint, teams rebuilt the same work from scratch —
+            burning 34% of development capacity on redundant effort. I led Prism to fix that:
+            from a post-launch audit to a published npm package, without a single engineer on my team.
           </p>
 
-          {/* Key Metrics */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12">
-            {[
-              { number: '37', label: 'components' },
-              { number: '198', label: 'variants' },
-              { number: '1', label: 'npm package' },
-              { number: 'WCAG 2.1 AA', label: 'compliance' },
-            ].map((metric, i) => (
-              <div
-                key={i}
-                className="bg-black/5 border border-black/10 rounded-2xl p-6 hover:bg-black/10 transition-colors"
-              >
-                <div className="text-[32px] font-bold mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
-                  {metric.number}
+          {/* Outcomes + Figma proof */}
+          <div className="lg:grid lg:grid-cols-[1fr_460px] lg:gap-6 lg:items-stretch">
+            {/* Left: 2×2 outcome cards */}
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { number: '37', label: 'components', note: 'shipped to npm' },
+                { number: '198', label: 'variants', note: 'across all states & themes' },
+                { number: '47%', label: 'faster rebuilds', note: 'vs. pre-Prism baseline' },
+                { number: '100%', label: 'WCAG 2.1 AA', note: 'built-in, not retrofitted' },
+              ].map((metric, i) => (
+                <div
+                  key={i}
+                  className="bg-[#ede9e3] border border-[#ccc8c0] rounded-2xl p-5 hover:bg-[#e6e1da] transition-colors"
+                >
+                  <div className="text-[42px] font-bold leading-none tracking-tight mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+                    {metric.number}
+                  </div>
+                  <div className="text-[13px] font-semibold text-black/75 leading-snug">{metric.label}</div>
+                  <div className="text-[11px] text-black/40 mt-1">{metric.note}</div>
                 </div>
-                <div className="text-[13px] text-black/60 uppercase tracking-wide">
-                  {metric.label}
+              ))}
+            </div>
+
+            {/* Right: Figma library proof placeholder */}
+            <div className="mt-4 lg:mt-0">
+              <div className="relative rounded-2xl bg-[#1a1815] overflow-hidden h-full min-h-[280px] flex flex-col items-center justify-center text-center p-8">
+                <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+                <div className="relative z-10 max-w-xs">
+                  <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-4">
+                    <span className="text-[10px] text-white/30 uppercase tracking-widest font-mono">📐 Figma Screenshot</span>
+                  </div>
+                  <div className="text-[17px] font-semibold text-white/50 mb-2">Prism Component Library</div>
+                  <div className="text-[12px] text-white/25 leading-relaxed">All 37 components · 198 variants · organised by category · single source of truth</div>
                 </div>
               </div>
-            ))}
+              <p className="text-[11px] text-black/30 text-center mt-2.5 uppercase tracking-widest">↑ Proof: 1 Figma library that replaced 6 fragmented files</p>
+            </div>
           </div>
         </div>
 
@@ -207,7 +226,7 @@ export const PrismCaseStudy = () => {
             ].map((card, i) => (
               <div
                 key={i}
-                className="bg-white border border-black/10 rounded-xl p-6 hover:shadow-lg transition-shadow"
+                className="bg-[#ede9e3] border border-[#ccc8c0] rounded-xl p-6 hover:shadow-lg transition-shadow"
               >
                 <div className="text-[32px] mb-3">{card.icon}</div>
                 <h3 className="text-[16px] font-semibold mb-2">{card.title}</h3>
@@ -219,6 +238,28 @@ export const PrismCaseStudy = () => {
             ))}
           </div>
         </section>
+
+        {/* Proof: Discovery */}
+        <div className="mb-16">
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { label: '📋 Audit Doc', title: 'Product Inconsistency Audit', desc: 'Screenshot of the audit spreadsheet — 12+ patterns catalogued across 3 products' },
+              { label: '🎙 Research Notes', title: 'Stakeholder Interview Synthesis', desc: 'Screenshot of FigJam or Notion synthesis — themes from 4 Sr. Designers + 3 PMs' },
+            ].map((p, i) => (
+              <div key={i} className="relative rounded-2xl bg-[#1a1815] overflow-hidden min-h-[220px] flex flex-col items-center justify-center text-center px-8 py-10">
+                <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+                <div className="relative z-10 max-w-[240px]">
+                  <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-4">
+                    <span className="text-[10px] text-white/30 uppercase tracking-widest font-mono">{p.label}</span>
+                  </div>
+                  <div className="text-[15px] font-semibold text-white/50 mb-2">{p.title}</div>
+                  <div className="text-[11px] text-white/25 leading-relaxed">{p.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] text-black/30 text-center mt-2.5 uppercase tracking-widest">↑ Proof: the research that quantified 34% dev waste and secured leadership buy-in</p>
+        </div>
 
         {/* Problem Statement */}
         <section className="mb-20">
@@ -334,7 +375,7 @@ export const PrismCaseStudy = () => {
               ].map((pillar, i) => (
                 <div
                   key={i}
-                  className="bg-white border border-blue-100 rounded-xl p-6 hover:shadow-lg transition-shadow"
+                  className="bg-[#ede9e3] rounded-xl p-6 hover:shadow-lg transition-shadow"
                 >
                   <div className="text-[11px] uppercase tracking-widest text-blue-600 font-semibold mb-3">
                     {pillar.area}
@@ -352,6 +393,28 @@ export const PrismCaseStudy = () => {
             </div>
           </div>
 
+          {/* Proof: Phase 1 Deliverables */}
+          <div className="mb-10">
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                { label: '🎨 Figma Variables', title: 'Token System in Figma', desc: 'Screenshot of the Figma variables panel — color, spacing, typography tokens mapped to CSS properties' },
+                { label: '📖 Storybook', title: 'Component Documentation', desc: 'Screenshot of Storybook — component with prop table, a11y panel, and interactive story' },
+              ].map((p, i) => (
+                <div key={i} className="relative rounded-2xl bg-[#1a1815] overflow-hidden min-h-[220px] flex flex-col items-center justify-center text-center px-8 py-10">
+                  <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+                  <div className="relative z-10 max-w-[240px]">
+                    <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-4">
+                      <span className="text-[10px] text-white/30 uppercase tracking-widest font-mono">{p.label}</span>
+                    </div>
+                    <div className="text-[15px] font-semibold text-white/50 mb-2">{p.title}</div>
+                    <div className="text-[11px] text-white/25 leading-relaxed">{p.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-[11px] text-black/30 text-center mt-2.5 uppercase tracking-widest">↑ Proof: Phase 1 deliverables — token system + living documentation</p>
+          </div>
+
           {/* Constraint Callout */}
           <div className="bg-amber-50 border border-amber-200 rounded-2xl p-8 my-10">
             <div className="text-[11px] uppercase tracking-widest text-amber-800 mb-4">
@@ -366,6 +429,21 @@ export const PrismCaseStudy = () => {
               as my pair programmer." Claude Code and Cursor became my engineering partners — they handled architecture
               and implementation while I drove product decisions. The 1.5-week timeline forced ruthless prioritization.
             </p>
+          </div>
+
+          {/* Proof: AI Session */}
+          <div className="mb-10">
+            <div className="relative rounded-2xl bg-[#1a1815] overflow-hidden min-h-[220px] flex flex-col items-center justify-center text-center p-8">
+              <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+              <div className="relative z-10 max-w-sm">
+                <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-4">
+                  <span className="text-[10px] text-white/30 uppercase tracking-widest font-mono">🤖 Claude Code / Cursor</span>
+                </div>
+                <div className="text-[17px] font-semibold text-white/50 mb-2">AI-Assisted Engineering Session</div>
+                <div className="text-[12px] text-white/25 leading-relaxed">Screenshot of Claude Code or Cursor mid-session — ARIA implementation, component architecture, or TypeScript prop definitions being generated</div>
+              </div>
+            </div>
+            <p className="text-[11px] text-black/30 text-center mt-2.5 uppercase tracking-widest">↑ Proof: what "AI as pair programmer" actually looked like in practice</p>
           </div>
 
           {/* Phase 2 */}
@@ -402,7 +480,7 @@ export const PrismCaseStudy = () => {
               ].map((pillar, i) => (
                 <div
                   key={i}
-                  className="bg-white border border-emerald-100 rounded-xl p-6 hover:shadow-lg transition-shadow"
+                  className="bg-[#ede9e3] rounded-xl p-6 hover:shadow-lg transition-shadow"
                 >
                   <div className="text-[11px] uppercase tracking-widest text-emerald-600 font-semibold mb-3">
                     {pillar.area}
@@ -420,6 +498,28 @@ export const PrismCaseStudy = () => {
             </div>
           </div>
         </section>
+
+        {/* Proof: Phase 2 Deliverables */}
+        <div className="mb-16">
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { label: '📦 npm', title: 'Package on npm Registry', desc: 'Screenshot of @indigo/prism on npmjs.com — weekly downloads, version, bundle size' },
+              { label: '💻 VS Code', title: 'Component in a Real Codebase', desc: 'Screenshot of a dev importing from @indigo/prism — TypeScript autocomplete showing props' },
+            ].map((p, i) => (
+              <div key={i} className="relative rounded-2xl bg-[#1a1815] overflow-hidden min-h-[220px] flex flex-col items-center justify-center text-center px-8 py-10">
+                <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+                <div className="relative z-10 max-w-[240px]">
+                  <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-4">
+                    <span className="text-[10px] text-white/30 uppercase tracking-widest font-mono">{p.label}</span>
+                  </div>
+                  <div className="text-[15px] font-semibold text-white/50 mb-2">{p.title}</div>
+                  <div className="text-[11px] text-white/25 leading-relaxed">{p.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] text-black/30 text-center mt-2.5 uppercase tracking-widest">↑ Proof: Prism shipped to production — a real npm package, not a Figma deliverable</p>
+        </div>
 
         {/* Impact Metrics */}
         <section className="mb-20">
@@ -465,7 +565,7 @@ export const PrismCaseStudy = () => {
           </div>
 
           {/* Before/After Table */}
-          <div className="bg-white border border-black/10 rounded-2xl overflow-hidden">
+          <div className="bg-[#ede9e3] border border-[#ccc8c0] rounded-2xl overflow-hidden">
             <table className="w-full">
               <thead>
                 <tr className="bg-black/5 border-b border-black/10">
@@ -492,6 +592,28 @@ export const PrismCaseStudy = () => {
             </table>
           </div>
         </section>
+
+        {/* Proof: Before / After UI */}
+        <div className="mb-16">
+          <div className="relative rounded-2xl bg-[#1a1815] overflow-hidden min-h-[280px] flex items-center justify-center">
+            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+            {/* Vertical divider */}
+            <div className="absolute inset-y-0 left-1/2 w-px bg-white/10 z-10" />
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-white/10 text-white/40 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full z-20 font-mono">Before → After</div>
+            <div className="relative z-10 grid grid-cols-2 w-full h-full">
+              {[
+                { side: 'Before Prism', desc: 'Product screenshot showing inconsistent UI — 5 different button styles, mismatched inputs, visual fragmentation across 3 products' },
+                { side: 'After Prism', desc: 'Same product screenshot after Prism adoption — unified components, consistent spacing, one visual language' },
+              ].map((p, i) => (
+                <div key={i} className="flex flex-col items-center justify-center text-center px-8 py-12">
+                  <div className="text-[11px] text-white/20 uppercase tracking-widest mb-3 font-mono">{p.side}</div>
+                  <div className="text-[12px] text-white/25 leading-relaxed max-w-[200px]">{p.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="text-[11px] text-black/30 text-center mt-2.5 uppercase tracking-widest">↑ Proof: visual before/after — the difference Prism made in the actual product</p>
+        </div>
 
         {/* Key Learnings */}
         <section className="mb-20">
