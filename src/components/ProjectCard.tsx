@@ -3,13 +3,15 @@ import { Project } from '../data/projects';
 
 interface ProjectCardProps {
   project: Project;
+  locked?: boolean;
 }
 
-export const ProjectCard = ({ project }: ProjectCardProps) => {
+export const ProjectCard = ({ project, locked = false }: ProjectCardProps) => {
   return (
     <Link
       to={`/work/${project.slug}`}
       className="block group"
+      style={locked ? { cursor: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'%3E%3Ctext y=\'26\' font-size=\'26\'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E") 8 8, pointer' } : {}}
     >
       <div className="border border-black/10 rounded-lg overflow-hidden hover:border-black/30 hover:shadow-xl transition-all duration-300 bg-white/60 backdrop-blur-sm group-hover:bg-white/80 group-hover:scale-[1.02]">
         {/* Project Image */}
@@ -21,6 +23,12 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {locked && (
+              <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/70 backdrop-blur-sm text-white text-[11px] font-medium px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <span>🔒</span>
+                <span className="uppercase tracking-widest">Protected</span>
+              </div>
+            )}
           </div>
         )}
         
@@ -59,8 +67,17 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           </div>
 
           <div className="flex items-center gap-2 text-[15px] group-hover:gap-3 transition-all duration-200">
-            <span className="underline underline-offset-2">View case study</span>
-            <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+            {locked ? (
+              <>
+                <span className="underline underline-offset-2">View case study</span>
+                <span className="text-[13px] opacity-60">🔒</span>
+              </>
+            ) : (
+              <>
+                <span className="underline underline-offset-2">View case study</span>
+                <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+              </>
+            )}
           </div>
         </div>
       </div>

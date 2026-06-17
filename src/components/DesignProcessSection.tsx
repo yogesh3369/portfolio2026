@@ -152,42 +152,35 @@ export const DesignProcessSection = () => {
   return (
     <section id="process" className="relative z-1 min-h-screen py-20 sm:py-28 px-5 sm:px-8 md:px-10">
       <div className="max-w-[1200px] mx-auto w-full">
-        {/* Section Header */}
-        <div className="mb-24 flex flex-col md:flex-row gap-8 md:gap-16 items-start">
-          <div className="md:w-1/4 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-[13px] text-black/50">
-              02
+        {/* Section Header - Left Aligned Stacked */}
+        <div className="mb-14 space-y-5">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-[13px] text-black/50 font-mono">
+              03
             </div>
-            <div
-              className="tracking-wide font-medium text-black/60"
-              style={{
-                fontSize: '14px',
-                letterSpacing: '0.02em',
-              }}
-            >
+            <div className="tracking-wide font-mono text-[13px] text-black/60 uppercase">
               How I work <span className="text-blue-600 font-bold ml-1">///</span>
             </div>
           </div>
           
-          <div className="md:w-3/4">
-            <h2
-              className="mb-6 tracking-tight max-w-3xl"
-              style={{ 
-                fontFamily: 'var(--font-heading)',
-                lineHeight: '1.05',
-                fontSize: 'clamp(42px, 6vw, 76px)',
-              }}
-            >
-              <span className="text-black font-semibold">AI applied to the</span>{' '}
-              <br />
-              <span className="text-black/40 italic" style={{ fontStyle: 'italic', fontWeight: 500 }}>
-                product design process.
-              </span>
-            </h2>
-            <p className="text-[18px] sm:text-[20px] text-black/60 max-w-xl">
-              The tools changed. The craft didn't.
-            </p>
-          </div>
+          <h2
+            className="tracking-tight max-w-4xl"
+            style={{ 
+              fontFamily: 'var(--font-heading)',
+              lineHeight: '1.05',
+              fontSize: 'clamp(42px, 6vw, 76px)',
+            }}
+          >
+            <span className="text-black font-semibold">AI applied to the</span>{' '}
+            <br />
+            <span className="text-black/40 italic" style={{ fontStyle: 'italic', fontWeight: 500 }}>
+              product design process.
+            </span>
+          </h2>
+          
+          <p className="text-[18px] sm:text-[20px] text-black/60 max-w-2xl leading-relaxed">
+            The tools changed. The craft didn't.
+          </p>
         </div>
 
         {/* Process Phases */}

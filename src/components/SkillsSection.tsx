@@ -51,16 +51,32 @@ export const SkillsSection = () => {
   return (
     <section id="skills" className="relative z-1 min-h-screen py-20 sm:py-28 px-5 sm:px-8 md:px-10">
       <div className="max-w-[1200px] mx-auto w-full">
-        <h2
-          className="text-[36px] sm:text-[48px] md:text-[56px] mb-4 tracking-tight"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
-          Skills & Expertise
-        </h2>
-
-        <p className="text-[18px] sm:text-[22px] mb-12 sm:mb-16 text-black/70 max-w-2xl">
-          A hybrid skillset bridging design methodology and technical implementation.
-        </p>
+        {/* Section Header - Left Aligned Stacked */}
+        <div className="mb-14 space-y-5">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-[13px] text-black/50 font-mono">
+              04
+            </div>
+            <div className="tracking-wide font-mono text-[13px] text-black/60 uppercase">
+              Skills <span className="text-blue-600 font-bold ml-1">///</span>
+            </div>
+          </div>
+          
+          <h2
+            className="tracking-tight font-semibold text-black max-w-4xl"
+            style={{ 
+              fontFamily: 'var(--font-heading)',
+              lineHeight: '1.05',
+              fontSize: 'clamp(42px, 6vw, 76px)',
+            }}
+          >
+            Skills & Expertise
+          </h2>
+          
+          <p className="text-[18px] sm:text-[20px] text-black/60 max-w-2xl leading-relaxed">
+            A hybrid skillset bridging design methodology and technical implementation.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {skillCategories.map((category, index) => (
