@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Project } from '../data/projects';
+import { playEnterCaseStudy } from '../hooks/useSoundEffects';
 
 interface ProjectCardProps {
   project: Project;
@@ -10,6 +11,7 @@ export const ProjectCard = ({ project, locked = false }: ProjectCardProps) => {
   return (
     <Link
       to={`/work/${project.slug}`}
+      onClick={playEnterCaseStudy}
       className="block group"
       style={locked ? { cursor: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'%3E%3Ctext y=\'26\' font-size=\'26\'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E") 8 8, pointer' } : {}}
     >

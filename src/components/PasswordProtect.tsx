@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { playUnlock, playError } from '../hooks/useSoundEffects';
 
 interface PasswordProtectProps {
   children: React.ReactNode;
@@ -36,6 +37,7 @@ export const PasswordProtect: React.FC<PasswordProtectProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === correctPassword) {
+      playUnlock();
       setErrorMsg('');
       setShowSplash(true);
       setTimeout(() => setSplashFading(true), 1600);
@@ -45,6 +47,7 @@ export const PasswordProtect: React.FC<PasswordProtectProps> = ({
         setSplashFading(false);
       }, 2400);
     } else {
+      playError();
       const idx = wrongCount % wrongMessages.length;
       setErrorMsg(wrongMessages[idx]);
       setWrongCount((c) => c + 1);
