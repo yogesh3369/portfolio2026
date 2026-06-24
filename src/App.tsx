@@ -6,6 +6,7 @@ import { HomePage } from './pages/HomePage';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { ProtectedPrismCaseStudy } from './components/ProtectedPrismCaseStudy';
 import { CustomCursor } from './components/CustomCursor';
+import { ScrollProgressIndicator } from './components/ScrollProgressIndicator';
 import { playClick } from './hooks/useSoundEffects';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <CustomCursor />
         <BackgroundVideo />
         <Navbar />
+        <ScrollProgressIndicator />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/work/prism-design-system" element={<ProtectedPrismCaseStudy />} />
