@@ -1,159 +1,103 @@
 "use client";
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
+import { useState } from 'react';
+
+const ToolLogo = ({ tool }: { tool: string }) => {
+  const slugMap: Record<string, string> = {
+    Notion: 'notion',
+    Claude: 'anthropic',
+    FigJam: 'figma',
+    Figma: 'figma',
+    Cursor: 'cursor',
+    Supabase: 'supabase',
+  };
+
+  const slug = slugMap[tool];
+
+  if (slug) {
+    return (
+      <div className="w-8 h-8 rounded-lg bg-white border border-black/10 flex items-center justify-center shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+        <img
+          src={`https://cdn.simpleicons.org/${slug}/1a1a1a`}
+          alt={tool}
+          className="w-4 h-4 object-contain"
+          style={{ imageRendering: 'crisp-edges' }}
+        />
+      </div>
+    );
+  }
+
+  // Lovable — custom mark (stylised L in a rounded square)
+  return (
+    <div className="w-8 h-8 rounded-lg bg-white border border-black/10 flex items-center justify-center shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M12 21C12 21 4 16 4 9.5C4 7.015 6.015 5 8.5 5C10.0 5 11.3 5.75 12 6.85C12.7 5.75 14.0 5 15.5 5C17.985 5 20 7.015 20 9.5C20 16 12 21 12 21Z"
+          fill="currentColor"
+          className="text-black/60"
+        />
+      </svg>
+    </div>
+  );
+};
+
+const phases = [
+  {
+    number: '01',
+    phase: 'Understand',
+    description: 'Ground the project in reality before making anything.',
+    tools: [
+      { name: 'Notion', task: 'Research synthesis' },
+      { name: 'Claude', task: 'Scope definition' },
+      { name: 'FigJam', task: 'Insight clustering' },
+    ],
+  },
+  {
+    number: '02',
+    phase: 'Analyse',
+    description: 'Turn raw data into decisions worth building around.',
+    tools: [
+      { name: 'Claude', task: 'Problem synthesis & benchmarking' },
+    ],
+  },
+  {
+    number: '03',
+    phase: 'Create',
+    description: 'Make things real, from rough sketches to working interfaces.',
+    tools: [
+      { name: 'Figma', task: 'Ideation & flows' },
+      { name: 'Cursor', task: 'Ideation & hand-off' },
+      { name: 'Lovable', task: 'Functional prototyping' },
+      { name: 'Supabase', task: 'Prototype data layer' },
+    ],
+  },
+  {
+    number: '04',
+    phase: 'Validate',
+    description: 'Test against reality, not assumptions.',
+    tools: [
+      { name: 'Claude', task: 'User testing & iteration' },
+      { name: 'Notion', task: 'Findings documentation' },
+    ],
+  },
+];
 
 export const DesignProcessSection = () => {
-  const processPhases = [
-    {
-      phase: 'Understand',
-      items: [
-        {
-          logo: (
-            <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center border border-black/10 shadow-sm">
-              <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
-                <path d="M4 4h16v16H4z" fill="#000" />
-                <path d="M8 8h8v8H8z" fill="#fff" />
-              </svg>
-            </div>
-          ),
-          tool: 'Notion',
-          task: 'Research synthesis',
-          description: 'Briefs structured, assumptions aligned, and initial decisions documented with the team.'
-        },
-        {
-          logo: (
-            <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center shadow-sm">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="3" fill="#fff" />
-                <circle cx="12" cy="12" r="6" stroke="#fff" strokeWidth="1.5" fill="none" />
-                <circle cx="12" cy="12" r="9" stroke="#fff" strokeWidth="1" fill="none" opacity="0.5" />
-              </svg>
-            </div>
-          ),
-          tool: 'Claude',
-          task: 'Scope definition',
-          description: 'Problem space explored and core challenges identified through AI-assisted analysis.'
-        },
-        {
-          logo: (
-            <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center border border-black/10 shadow-sm">
-              <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
-                <rect x="6" y="6" width="12" height="12" stroke="#000" strokeWidth="2" fill="none" />
-                <circle cx="12" cy="12" r="2" fill="#000" />
-              </svg>
-            </div>
-          ),
-          tool: 'Miro',
-          task: 'Research synthesis',
-          description: 'Results and insights summarized, clustered, and prioritized from research data.'
-        }
-      ]
-    },
-    {
-      phase: 'Analyse',
-      items: [
-        {
-          logo: (
-            <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center shadow-sm">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="3" fill="#fff" />
-                <circle cx="12" cy="12" r="6" stroke="#fff" strokeWidth="1.5" fill="none" />
-                <circle cx="12" cy="12" r="9" stroke="#fff" strokeWidth="1" fill="none" opacity="0.5" />
-              </svg>
-            </div>
-          ),
-          tool: 'Claude',
-          task: 'Problem synthesis & analysis',
-          description: 'Collected data cross-referenced to generate prioritized problem clusters.'
-        },
-        {
-          logo: (
-            <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center shadow-sm">
-              <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L4 7v10l8 5 8-5V7z" fill="#fff" />
-                <path d="M12 12l-4-2.5M12 12l4-2.5M12 12v5" stroke="#22c55e" strokeWidth="1.5" />
-              </svg>
-            </div>
-          ),
-          tool: 'FigJam',
-          task: 'Competitive benchmarking',
-          description: 'Competitors and trends researched with real citations, real app flows browsed by category.'
-        },
-        {
-          logo: (
-            <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center shadow-sm">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="3" fill="#fff" />
-                <circle cx="12" cy="12" r="6" stroke="#fff" strokeWidth="1.5" fill="none" />
-                <circle cx="12" cy="12" r="9" stroke="#fff" strokeWidth="1" fill="none" opacity="0.5" />
-              </svg>
-            </div>
-          ),
-          tool: 'Claude',
-          task: 'Hypothesis formulation',
-          description: 'Problems become testable hypotheses grounded in the project context.'
-        }
-      ]
-    },
-    {
-      phase: 'Create',
-      items: [
-        {
-          logo: (
-            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-sm">
-              <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
-                <circle cx="8" cy="8" r="3" fill="#fff" />
-                <circle cx="16" cy="8" r="3" fill="#fff" />
-                <circle cx="8" cy="16" r="3" fill="#fff" />
-                <circle cx="16" cy="16" r="3" fill="#fff" />
-                <path d="M8 8l8 8M16 8l-8 8" stroke="#fff" strokeWidth="1" opacity="0.5" />
-              </svg>
-            </div>
-          ),
-          tool: 'Figma',
-          task: 'Ideation',
-          description: 'Layout variations and flows explored directly within the design environment.'
-        },
-        {
-          logo: (
-            <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center shadow-sm">
-              <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#fff" />
-                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#fff" strokeWidth="1.5" fill="none" />
-              </svg>
-            </div>
-          ),
-          tool: 'Lovable',
-          task: 'Functional prototyping',
-          description: 'Prototypes become functional interfaces with real code from description or design.'
-        }
-      ]
-    },
-    {
-      phase: 'Validate',
-      items: [
-        {
-          logo: (
-            <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center shadow-sm">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="3" fill="#fff" />
-                <circle cx="12" cy="12" r="6" stroke="#fff" strokeWidth="1.5" fill="none" />
-                <circle cx="12" cy="12" r="9" stroke="#fff" strokeWidth="1" fill="none" opacity="0.5" />
-              </svg>
-            </div>
-          ),
-          tool: 'Claude',
-          task: 'User testing & iteration',
-          description: 'Test data interpreted, hypotheses cross-referenced, and objective adjustments identified.'
-        }
-      ]
-    }
-  ];
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const reduce = useReducedMotion();
 
   return (
     <section id="process" className="relative z-1 min-h-screen py-20 sm:py-28 px-5 sm:px-8 md:px-10">
       <div className="max-w-[1200px] mx-auto w-full">
-        {/* Section Header - Left Aligned Stacked */}
-        <div className="mb-14 space-y-5">
+
+        {/* Section Header */}
+        <motion.div
+          className="mb-16 space-y-5"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-[13px] text-black/50 font-mono">
               03
@@ -162,10 +106,10 @@ export const DesignProcessSection = () => {
               How I work <span className="text-blue-600 font-bold ml-1">///</span>
             </div>
           </div>
-          
+
           <h2
             className="tracking-tight max-w-4xl"
-            style={{ 
+            style={{
               fontFamily: 'var(--font-heading)',
               lineHeight: '1.05',
               fontSize: 'clamp(42px, 6vw, 76px)',
@@ -173,89 +117,126 @@ export const DesignProcessSection = () => {
           >
             <span className="text-black font-semibold">AI applied to the</span>{' '}
             <br />
-            <span className="text-black/40 italic" style={{ fontStyle: 'italic', fontWeight: 500 }}>
+            <span
+              className="text-black/40 italic"
+              style={{ fontStyle: 'italic', fontWeight: 500, lineHeight: '1.1', display: 'inline-block', paddingBottom: '2px' }}
+            >
               product design process.
             </span>
           </h2>
-          
+
           <p className="text-[18px] sm:text-[20px] text-black/60 max-w-2xl leading-relaxed">
             The tools changed. The craft didn't.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Process Phases */}
+        {/* Phase Strips */}
         <div className="relative">
-          {processPhases.map((phase, phaseIndex) => (
+          {phases.map((phase, i) => (
             <motion.div
               key={phase.phase}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className={`flex flex-col md:flex-row gap-8 md:gap-16 py-16 ${
-                phaseIndex !== 0 ? 'border-t border-black/[0.08]' : 'border-t border-black/[0.08]'
-              } relative`}
+              initial={reduce ? false : { opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.65, delay: i * 0.09, ease: [0.16, 1, 0.3, 1] }}
+              onHoverStart={() => setHoveredIndex(i)}
+              onHoverEnd={() => setHoveredIndex(null)}
+              className="relative border-t border-black/[0.08] cursor-default"
             >
-              {/* Optional dot separator on border (for middle sections) */}
-              {phaseIndex > 0 && (
-                <div className="hidden md:flex absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#f8f9fa] border border-black/10 rounded-full items-center justify-center">
-                  <div className="w-1.5 h-1.5 bg-black/40 rounded-full"></div>
-                </div>
-              )}
+              {/* Blue left accent bar — reveals on hover */}
+              <motion.div
+                className="absolute left-0 top-0 bottom-0 w-[3px] bg-blue-600 origin-top"
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: hoveredIndex === i ? 1 : 0 }}
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              />
 
-              {/* Left Column: Phase Title */}
-              <div className="md:w-1/4 flex-shrink-0">
-                <h3
-                  className="text-[32px] sm:text-[40px] md:text-[48px] tracking-tight sticky top-32 font-bold text-black/90"
-                  style={{ fontFamily: 'var(--font-heading)' }}
-                >
-                  {phase.phase}
-                </h3>
-              </div>
+              {/* Row content */}
+              <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12 py-10 md:py-12">
 
-              {/* Right Column: Cards Grid */}
-              <div className="md:w-3/4">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                  {phase.items.map((item, itemIndex) => (
-                    <motion.div
-                      key={itemIndex}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.5, delay: itemIndex * 0.1 }}
+                {/* LEFT — Phase label: compact, anchors the row */}
+                <div className="md:w-[38%] shrink-0 flex items-start gap-5">
+                  {/* Ghost number */}
+                  <span
+                    className="hidden md:block font-bold leading-none tracking-tighter shrink-0 select-none"
+                    style={{
+                      fontFamily: 'var(--font-heading)',
+                      fontSize: '52px',
+                      color: 'rgba(0,0,0,0.06)',
+                      letterSpacing: '-0.04em',
+                      lineHeight: 1,
+                      marginTop: '4px',
+                    }}
+                  >
+                    {phase.number}
+                  </span>
+
+                  <div className="min-w-0">
+                    <span className="font-mono text-[11px] uppercase tracking-widest text-black/40 mb-2 block md:hidden">
+                      {phase.number}
+                    </span>
+                    <h3
+                      className="tracking-tight leading-[1.05] font-bold text-black"
+                      style={{
+                        fontFamily: 'var(--font-heading)',
+                        fontSize: 'clamp(28px, 3.2vw, 44px)',
+                      }}
                     >
-                      <div className="bg-white rounded-2xl p-6 sm:p-8 h-full border border-black/[0.08] shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
-                        {/* Card Header: Logo & Tool (Left) + Task (Right) */}
-                        <div className="flex items-start justify-between gap-4 mb-8">
-                          <div className="flex items-center gap-3">
-                            <div className="shrink-0">
-                              {item.logo}
-                            </div>
-                            <span className="text-[16px] font-medium text-black/80">
-                              {item.tool}
-                            </span>
+                      {phase.phase}
+                    </h3>
+                    <p className="mt-2.5 text-[14px] text-black/70 leading-relaxed">
+                      {phase.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* RIGHT — Tools: the real content, always visible as cards */}
+                <div className="flex-1 min-w-0">
+                  {/* Desktop: horizontal row of tool cards */}
+                  <div className="hidden md:flex flex-wrap gap-3">
+                    {phase.tools.map((tool, j) => (
+                      <motion.div
+                        key={`${tool.name}-${j}`}
+                        initial={reduce ? false : { opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.45, delay: i * 0.08 + j * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                        className="flex items-center gap-3 bg-white/65 backdrop-blur-sm border border-black/10 rounded-xl px-4 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.09)] hover:-translate-y-0.5 transition-all duration-200 cursor-default"
+                      >
+                        <ToolLogo tool={tool.name} />
+                        <div>
+                          <div className="text-[14px] font-semibold text-black leading-tight whitespace-nowrap">
+                            {tool.name}
                           </div>
-                          <div
-                            className="text-[14px] sm:text-[16px] font-bold text-right leading-tight max-w-[140px] text-black/90"
-                            style={{ fontFamily: 'var(--font-heading)' }}
-                          >
-                            {item.task}
+                          <div className="text-[11px] font-mono uppercase tracking-widest text-black/45 mt-0.5 whitespace-nowrap">
+                            {tool.task}
                           </div>
                         </div>
+                      </motion.div>
+                    ))}
+                  </div>
 
-                        {/* Card Description */}
-                        <p className="text-[13px] sm:text-[14px] leading-relaxed text-black/50">
-                          {item.description}
-                        </p>
+                  {/* Mobile: same cards, wrapping */}
+                  <div className="flex flex-wrap gap-2 md:hidden">
+                    {phase.tools.map((tool, j) => (
+                      <div
+                        key={`${tool.name}-mobile-${j}`}
+                        className="flex items-center gap-2 bg-white/65 border border-black/10 rounded-xl px-3 py-2.5 shadow-[0_1px_4px_rgba(0,0,0,0.06)]"
+                      >
+                        <ToolLogo tool={tool.name} />
+                        <div>
+                          <div className="text-[13px] font-semibold text-black">{tool.name}</div>
+                          <div className="text-[10px] font-mono uppercase tracking-widest text-black/45">{tool.task}</div>
+                        </div>
                       </div>
-                    </motion.div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
-          
-          <div className="border-t border-black/[0.08] w-full mt-4"></div>
+
+          <div className="border-t border-black/[0.08]" />
         </div>
       </div>
     </section>

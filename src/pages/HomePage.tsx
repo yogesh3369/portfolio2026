@@ -4,6 +4,7 @@ import { AboutSection } from '../components/AboutSection';
 import { DesignProcessSection } from '../components/DesignProcessSection';
 import { SkillsSection } from '../components/SkillsSection';
 import { BeyondDesignSection } from '../components/BeyondDesignSection';
+import { TestimonialsSection } from '../components/TestimonialsSection';
 import { ContactSection } from '../components/ContactSection';
 
 export const HomePage = () => {
@@ -15,6 +16,7 @@ export const HomePage = () => {
       <DesignProcessSection />
       <SkillsSection />
       <BeyondDesignSection />
+      <TestimonialsSection />
       <ContactSection />
     </>
   );

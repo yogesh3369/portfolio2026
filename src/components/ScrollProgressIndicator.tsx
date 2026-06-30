@@ -9,7 +9,7 @@ export const ScrollProgressIndicator = () => {
       const documentHeight = document.documentElement.scrollHeight;
       const scrollTop = window.scrollY;
       const scrollableHeight = documentHeight - windowHeight;
-      const progress = (scrollTop / scrollableHeight) * 100;
+      const progress = scrollableHeight > 0 ? (scrollTop / scrollableHeight) * 100 : 0;
       setScrollProgress(Math.min(100, Math.max(0, progress)));
     };
 

@@ -22,7 +22,7 @@ export const ContactSection = () => {
         <div className="mb-14 space-y-5">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-[13px] text-black/50 font-mono">
-              06
+              07
             </div>
             <div className="tracking-wide font-mono text-[13px] text-black/60 uppercase">
               Contact <span className="text-blue-600 font-bold ml-1">///</span>
