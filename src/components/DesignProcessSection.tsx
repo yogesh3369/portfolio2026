@@ -141,14 +141,21 @@ export const DesignProcessSection = () => {
               transition={{ duration: 0.65, delay: i * 0.09, ease: [0.16, 1, 0.3, 1] }}
               onHoverStart={() => setHoveredIndex(i)}
               onHoverEnd={() => setHoveredIndex(null)}
-              className="relative border-t border-black/[0.08] cursor-default"
+              className="relative border-t border-black/[0.08] cursor-default overflow-hidden"
             >
-              {/* Blue left accent bar — reveals on hover */}
+              {/* Sweeping top border on hover */}
               <motion.div
-                className="absolute left-0 top-0 bottom-0 w-[3px] bg-blue-600 origin-top"
-                initial={{ scaleY: 0 }}
-                animate={{ scaleY: hoveredIndex === i ? 1 : 0 }}
-                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute top-0 left-0 h-[1.5px] bg-black origin-left"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: hoveredIndex === i ? 1 : 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              />
+              {/* Subtle row background on hover */}
+              <motion.div
+                className="absolute inset-0 bg-black/[0.02]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: hoveredIndex === i ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
               />
 
               {/* Row content */}

@@ -44,9 +44,9 @@ export const AboutSection = () => {
             {/* Photo */}
             <div className="relative overflow-hidden rounded-2xl border border-black/10 aspect-[4/5] bg-black/[0.02]">
               <img
-                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=700&q=80"
+                src="/yogesh.png"
                 alt="Yogesh Yadav"
-                className="w-full h-full object-cover grayscale brightness-90 contrast-110"
+                className="w-full h-full object-cover object-top"
               />
               <div className="absolute bottom-4 left-4 right-4 bg-white/80 backdrop-blur-sm border border-black/10 rounded-full px-4 py-2 flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -56,7 +56,7 @@ export const AboutSection = () => {
                   </span>
                   <span className="text-[11px] font-mono text-black/60 font-bold uppercase tracking-wide">Open to work</span>
                 </div>
-                <span className="text-[10px] font-mono text-black/35 uppercase tracking-wider">Delhi, IN</span>
+                <span className="text-[10px] font-mono text-black/35 uppercase tracking-wider">Gurgaon, IN</span>
               </div>
             </div>
 

@@ -1,29 +1,10 @@
 "use client";
-import { useEffect } from 'react';
-import { useMotionValueEvent } from 'motion/react';
 import {
   CardTransformed,
   CardsContainer,
   ContainerScroll,
-  useContainerScrollContext,
 } from './ui/animated-cards-stack';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { spokeCardSound } from '../hooks/useSoundEffects';
-
-const ScrollSpokeSound = () => {
-  const { scrollYProgress } = useContainerScrollContext();
-
-  useEffect(() => {
-    spokeCardSound.setVariant('retro');
-    spokeCardSound.reset();
-  }, []);
-
-  useMotionValueEvent(scrollYProgress, 'change', (value) => {
-    spokeCardSound.update(value);
-  });
-
-  return null;
-};
 
 type Testimonial = {
   id: string;
@@ -131,7 +112,6 @@ export const TestimonialsSection = () => {
         </div>
 
         <ContainerScroll className="h-[300vh]">
-          <ScrollSpokeSound />
           <div className="sticky left-0 top-0 h-svh w-full flex items-center">
             <CardsContainer className="mx-auto size-full h-[440px] w-full max-w-[480px]">
               {TESTIMONIALS.map((testimonial, index) => (
