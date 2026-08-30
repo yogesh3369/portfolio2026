@@ -40,7 +40,7 @@ const polaroids: PolaroidData[] = [
     rotate: -3,
     x: '26.5%',
     y: '7%',
-    imgPosition: '20% center',
+    imgPosition: '30% center',
   },
   {
     src: '/beyond-design/tiger.jpg',
@@ -55,7 +55,7 @@ const polaroids: PolaroidData[] = [
     rotate: -5,
     x: '53.5%',
     y: '5%',
-    imgPosition: '75% center',
+    imgPosition: '90% center',
   },
   {
     src: '/beyond-design/bowling.jpg',
