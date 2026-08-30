@@ -108,6 +108,18 @@ export const ContactSection = () => {
             </div>
           </div>
 
+          {/* Resume */}
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-widest text-black/40 mb-4">Resume</p>
+            <a
+              href="/Yogesh_Yadav_UX_Designer.pdf"
+              download="Yogesh_Yadav_UX_Designer.pdf"
+              className="inline-flex items-center gap-2.5 bg-black text-white border border-black rounded-full text-[14px] sm:text-[15px] font-medium px-5 py-2.5 hover:bg-white hover:text-black transition-all duration-200 shadow-[0_1px_4px_rgba(0,0,0,0.06)]"
+            >
+              Download resume
+            </a>
+          </div>
+
           {/* Footer note */}
           <div className="pt-8 border-t border-black/10">
             <p className="text-[14px] font-mono text-black/40 uppercase tracking-wider">

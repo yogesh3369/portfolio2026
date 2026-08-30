@@ -27,7 +27,7 @@ const ToolLogo = ({ tool }: { tool: string }) => {
     );
   }
 
-  // Lovable — custom mark (stylised L in a rounded square)
+  // Lovable - custom mark (stylised L in a rounded square)
   return (
     <div className="w-8 h-8 rounded-lg bg-white border border-black/10 flex items-center justify-center shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -161,7 +161,7 @@ export const DesignProcessSection = () => {
               {/* Row content */}
               <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12 py-10 md:py-12">
 
-                {/* LEFT — Phase label: compact, anchors the row */}
+                {/* LEFT - Phase label: compact, anchors the row */}
                 <div className="md:w-[38%] shrink-0 flex items-start gap-5">
                   {/* Ghost number */}
                   <span
@@ -197,7 +197,7 @@ export const DesignProcessSection = () => {
                   </div>
                 </div>
 
-                {/* RIGHT — Tools: the real content, always visible as cards */}
+                {/* RIGHT - Tools: the real content, always visible as cards */}
                 <div className="flex-1 min-w-0">
                   {/* Desktop: horizontal row of tool cards */}
                   <div className="hidden md:flex flex-wrap gap-3">

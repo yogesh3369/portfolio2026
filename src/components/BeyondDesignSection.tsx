@@ -2,48 +2,74 @@
 import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 
-const polaroids = [
+const playTapePeel = () => {
+  try {
+    const audio = new Audio('/tear.wav');
+    audio.volume = 0.8;
+    audio.play();
+  } catch (_) {}
+};
+
+type PolaroidData = {
+  src: string;
+  caption: string;
+  rotate: number;
+  x: string;
+  y: string;
+  imgPosition?: string;
+};
+
+const polaroids: PolaroidData[] = [
   {
-    src: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80',
-    caption: 'match day ⚽',
+    src: '/beyond-design/bungee.jpg',
+    caption: 'leap of faith',
     rotate: -8,
-    x: '2%',
-    y: '8%',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&q=80',
-    caption: 'never skip leg day',
-    rotate: 5,
-    x: '20%',
-    y: '42%',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
-    caption: 'somewhere coastal',
-    rotate: -4,
-    x: '38%',
+    x: '0%',
     y: '5%',
   },
   {
-    src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80',
-    caption: 'the long way home',
-    rotate: 7,
-    x: '56%',
-    y: '38%',
+    src: '/beyond-design/pool.jpg',
+    caption: 'rack \'em up',
+    rotate: 5,
+    x: '13%',
+    y: '45%',
   },
   {
-    src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80',
-    caption: 'live > recorded',
+    src: '/beyond-design/team.jpg',
+    caption: 'work fam',
+    rotate: -3,
+    x: '26.5%',
+    y: '7%',
+    imgPosition: '20% center',
+  },
+  {
+    src: '/beyond-design/tiger.jpg',
+    caption: 'spotted one',
+    rotate: 6,
+    x: '40%',
+    y: '47%',
+  },
+  {
+    src: '/beyond-design/rafting.jpg',
+    caption: 'white water',
+    rotate: -5,
+    x: '53.5%',
+    y: '5%',
+    imgPosition: '75% center',
+  },
+  {
+    src: '/beyond-design/bowling.jpg',
+    caption: 'strike mode',
+    rotate: 4,
+    x: '67%',
+    y: '45%',
+  },
+  {
+    src: '/beyond-design/cat.jpg',
+    caption: 'home base',
     rotate: -6,
-    x: '74%',
-    y: '10%',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80',
-    caption: 'chasing horizons',
-    rotate: 3,
     x: '80%',
-    y: '48%',
+    y: '9%',
   },
 ];
 
@@ -66,7 +92,7 @@ const Polaroid = ({
       dragConstraints={containerRef}
       dragElastic={0.12}
       dragMomentum={false}
-      onDragStart={() => { setDragging(true); onFocus(); }}
+      onDragStart={() => { setDragging(true); onFocus(); playTapePeel(); }}
       onDragEnd={() => setDragging(false)}
       onMouseDown={onFocus}
       initial={{ opacity: 0, y: 40, rotate: p.rotate }}
@@ -80,7 +106,7 @@ const Polaroid = ({
         left: p.x,
         top: p.y,
         zIndex,
-        width: 'clamp(150px, 17vw, 220px)',
+        width: 'clamp(150px, 16vw, 205px)',
       }}
     >
       {/* Polaroid frame */}
@@ -100,6 +126,7 @@ const Polaroid = ({
             alt={p.caption}
             draggable={false}
             className="w-full h-full object-cover"
+            style={{ objectPosition: p.imgPosition ?? 'center' }}
           />
         </div>
         <p
@@ -148,7 +175,7 @@ export const BeyondDesignSection = () => {
           </h2>
 
           <p className="text-[18px] sm:text-[20px] text-black/50 max-w-xl leading-relaxed">
-            Life off-screen — grab a photo and move it around.
+            Life off-screen - grab a photo and move it around.
           </p>
         </div>
 
@@ -185,7 +212,7 @@ export const BeyondDesignSection = () => {
         <div className="mt-12 pt-8 border-t border-black/10">
           <p className="text-[16px] sm:text-[18px] leading-relaxed text-black/50 max-w-3xl">
             Life outside design keeps me grounded and curious. The best ideas rarely come
-            from staring at a screen — they emerge during a game, on a trail, or in a
+            from staring at a screen - they emerge during a game, on a trail, or in a
             conversation with someone from a completely different world.
           </p>
         </div>

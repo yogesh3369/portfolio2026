@@ -29,7 +29,7 @@ export const ProjectCard = ({ project, locked = false, index }: ProjectCardProps
         <div className="absolute inset-0 bg-black/80" />
       )}
 
-      {/* Gradient overlay — heavier at bottom */}
+      {/* Gradient overlay - heavier at bottom */}
       <div
         className="absolute inset-0"
         style={{
@@ -41,7 +41,7 @@ export const ProjectCard = ({ project, locked = false, index }: ProjectCardProps
       <div className="absolute top-8 left-9 flex items-center gap-3">
         <div className="w-[6px] h-[6px] rounded-full bg-white/60 shrink-0" />
         <span className="text-[11px] tracking-[0.22em] uppercase font-medium text-white/60 font-mono">
-          {String(index + 1).padStart(2, '0')} — {project.tags[0]}
+          {String(index + 1).padStart(2, '0')} - {project.tags[0]}
         </span>
       </div>
 
@@ -53,7 +53,7 @@ export const ProjectCard = ({ project, locked = false, index }: ProjectCardProps
         </div>
       )}
 
-      {/* Ghost index — decorative */}
+      {/* Ghost index - decorative */}
       <div
         className="absolute top-5 right-9 text-[7rem] font-black leading-none select-none pointer-events-none"
         style={{

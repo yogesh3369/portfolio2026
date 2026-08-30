@@ -31,7 +31,7 @@ const haptic = (pattern: number | number[]) => {
   }
 };
 
-// Soft UI click — 900 → 500 Hz sine, 60 ms
+// Soft UI click - 900 → 500 Hz sine, 60 ms
 export const playClick = () => {
   try {
     const ctx = getCtx();
@@ -51,7 +51,7 @@ export const playClick = () => {
   } catch (_) {}
 };
 
-// Cinematic entry — bass thump + rising sweep, 450 ms
+// Cinematic entry - bass thump + rising sweep, 450 ms
 export const playEnterCaseStudy = () => {
   try {
     const ctx = getCtx();
@@ -88,7 +88,7 @@ export const playEnterCaseStudy = () => {
   } catch (_) {}
 };
 
-// Triumphant unlock — C5 E5 G5 arpeggiated
+// Triumphant unlock - C5 E5 G5 arpeggiated
 export const playUnlock = () => {
   try {
     const ctx = getCtx();
@@ -111,10 +111,10 @@ export const playUnlock = () => {
   } catch (_) {}
 };
 
-// Spoke-card ratchet — the classic "card clothespinned to bike spokes" sound.
+// Spoke-card ratchet - the classic "card clothespinned to bike spokes" sound.
 // Fires one click for every fixed slice of scroll distance travelled, so slow
 // scrolling gives individual "tk... tk... tk" clicks and fast scrolling
-// blurs them into a continuous "zzzzzzzz" buzz — exactly like the real thing.
+// blurs them into a continuous "zzzzzzzz" buzz - exactly like the real thing.
 export type SpokeVariant = 'classic' | 'soft' | 'mechanical' | 'retro';
 
 let noiseBufferCache: AudioBuffer | null = null;
@@ -131,7 +131,7 @@ const getNoiseBuffer = (ctx: AudioContext) => {
   return noiseBufferCache;
 };
 
-// A: Classic — crisp bandpassed noise click, the plain plastic-card-on-spokes sound.
+// A: Classic - crisp bandpassed noise click, the plain plastic-card-on-spokes sound.
 const clickClassic = (intensity: number) => {
   const ctx = getCtx();
   const now = ctx.currentTime;
@@ -152,7 +152,7 @@ const clickClassic = (intensity: number) => {
   src.stop(now + 0.05);
 };
 
-// B: Soft — lower, rounder, felt-brush texture. Gentle background detail.
+// B: Soft - lower, rounder, felt-brush texture. Gentle background detail.
 const clickSoft = (intensity: number) => {
   const ctx = getCtx();
   const now = ctx.currentTime;
@@ -173,7 +173,7 @@ const clickSoft = (intensity: number) => {
   src.stop(now + 0.1);
 };
 
-// C: Mechanical — a tiny pitched tick, like a clock escapement or geiger counter.
+// C: Mechanical - a tiny pitched tick, like a clock escapement or geiger counter.
 const clickMechanical = (intensity: number) => {
   const ctx = getCtx();
   const now = ctx.currentTime;
@@ -191,7 +191,7 @@ const clickMechanical = (intensity: number) => {
   osc.stop(now + 0.025);
 };
 
-// D: Retro — 8-bit blip, pitch rises with scroll speed. Playful, game-like.
+// D: Retro - 8-bit blip, pitch rises with scroll speed. Playful, game-like.
 const clickRetro = (intensity: number) => {
   const ctx = getCtx();
   // Schedule slightly ahead so resume() has time to activate before note fires.
@@ -279,7 +279,7 @@ class SpokeCardSound {
 
 export const spokeCardSound = new SpokeCardSound();
 
-// Error buzz — sawtooth thud, 180 ms
+// Error buzz - sawtooth thud, 180 ms
 export const playError = () => {
   try {
     const ctx = getCtx();

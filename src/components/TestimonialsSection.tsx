@@ -1,36 +1,13 @@
-"use client";
-import {
-  CardTransformed,
-  CardsContainer,
-  ContainerScroll,
-} from './ui/animated-cards-stack';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { SlidingTestimonials, type SlidingTestimonial } from './ui/sliding-testimonial';
 
-type Testimonial = {
-  id: string;
-  name: string;
-  role: string;
-  relation: string;
-  quote: string;
-  avatarUrl?: string;
-  linkedinUrl: string;
-};
-
-const initials = (name: string) =>
-  name
-    .split(' ')
-    .map((part) => part[0])
-    .join('')
-    .toUpperCase();
-
-const TESTIMONIALS: Testimonial[] = [
+const TESTIMONIALS: SlidingTestimonial[] = [
   {
     id: 'rajat-sahu',
     name: 'Rajat Sahu',
     role: 'Product Designer @ IndiGo · M.Des NIFT',
     relation: 'Worked with Yogesh on the same team',
     quote:
-      "Yogesh has a strong grasp of UX fundamentals — his feedback is thoughtful, logical, and rooted in sound reasoning. He communicates effectively, drives projects from design through execution with real ownership, and is quick to adopt new technologies and use AI thoughtfully in his work.",
+      "Yogesh has a strong grasp of UX fundamentals - his feedback is thoughtful, logical, and rooted in sound reasoning. He communicates effectively, drives projects from design through execution with real ownership, and is quick to adopt new technologies and use AI thoughtfully in his work.",
     linkedinUrl: 'https://www.linkedin.com/in/sahurajat/',
   },
   {
@@ -39,7 +16,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: 'Product Designer @ IndiGo · Ex-Microsoft, Cars24',
     relation: 'Worked with Yogesh on the same team',
     quote:
-      "Yogesh is an enthusiastic and highly collaborative professional with great skills in vibe coding and problem-solving. He is always willing to support his colleagues whenever they face challenges, making him a dependable team player. One of his standout qualities is his curiosity — he consistently asks thoughtful questions to gain clarity and ensure a thorough understanding of tasks before execution.",
+      "Yogesh is an enthusiastic and highly collaborative professional with great skills in vibe coding and problem-solving. He is always willing to support his colleagues whenever they face challenges, making him a dependable team player. One of his standout qualities is his curiosity - he consistently asks thoughtful questions to gain clarity and ensure a thorough understanding of tasks before execution.",
     avatarUrl:
       'https://media.licdn.com/dms/image/v2/D5603AQE_Yr0Z6TXaAA/profile-displayphoto-crop_800_800/B56Z50fzrEGgAQ-/0/1780070956490?e=1784160000&v=beta&t=yJ_vYOOLYoLhLI3etsKzB-PlVEY6-VIcvFkmGsBOZjk',
     linkedinUrl: 'https://www.linkedin.com/in/gaurav-kumar-b96309211/',
@@ -72,7 +49,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: 'Product Designer @ Pixell',
     relation: 'Worked with Yogesh on the same team',
     quote:
-      "I had the pleasure of working alongside Yogesh in the same team, and his energy, creativity, and systems thinking stood out every single time. He brings a unique perspective to problem-solving, blending user empathy with sharp design instincts. Working with him was always collaborative and inspiring — anyone would be lucky to have him on their team.",
+      "I had the pleasure of working alongside Yogesh in the same team, and his energy, creativity, and systems thinking stood out every single time. He brings a unique perspective to problem-solving, blending user empathy with sharp design instincts. Working with him was always collaborative and inspiring - anyone would be lucky to have him on their team.",
     avatarUrl:
       'https://media.licdn.com/dms/image/v2/D5603AQFU6TZlRodODw/profile-displayphoto-crop_800_800/B56ZlXfJmCG4AI-/0/1758109409022?e=1784160000&v=beta&t=3a3krcsi2I9kTfR6ph8WIOkEXxCzzTK1ZgsGceMOFF4',
     linkedinUrl: 'https://www.linkedin.com/in/aksych/',
@@ -107,65 +84,12 @@ export const TestimonialsSection = () => {
           </h2>
 
           <p className="text-[18px] sm:text-[20px] text-black/60 max-w-2xl leading-relaxed">
-            Notes from teammates and managers I've worked alongside — on design, execution, and how I show up.
+            Notes from teammates and managers I've worked alongside - on design, execution, and how I show up.
           </p>
         </div>
-
-        <ContainerScroll className="h-[300vh]">
-          <div className="sticky left-0 top-0 h-svh w-full flex items-center">
-            <CardsContainer className="mx-auto size-full h-[440px] w-full max-w-[480px]">
-              {TESTIMONIALS.map((testimonial, index) => (
-                <CardTransformed
-                  arrayLength={TESTIMONIALS.length}
-                  key={testimonial.id}
-                  variant="light"
-                  index={index + 2}
-                  role="article"
-                  aria-labelledby={`card-${testimonial.id}-title`}
-                  aria-describedby={`card-${testimonial.id}-content`}
-                >
-                  <div className="flex flex-col items-center space-y-5 text-center">
-                    <svg className="size-8 text-blue-600/30" fill="currentColor" viewBox="0 0 32 32">
-                      <path d="M9.333 8C5.6 8 2.667 10.933 2.667 14.667c0 3.733 2.933 6.666 6.666 6.666.711 0 1.4-.111 2.045-.32-.622 2.4-2.578 4.32-5.045 4.987v2.667c4.978-.8 8.667-5.067 8.667-10.227V14.667C15 10.933 12.844 8 9.333 8zm14.667 0c-3.733 0-6.667 2.933-6.667 6.667 0 3.733 2.934 6.666 6.667 6.666.711 0 1.4-.111 2.044-.32-.622 2.4-2.577 4.32-5.044 4.987v2.667c4.978-.8 8.667-5.067 8.667-10.227V14.667C29.667 10.933 27.511 8 24 8z" />
-                    </svg>
-                    <p
-                      id={`card-${testimonial.id}-content`}
-                      className="text-[16px] sm:text-[17px] leading-relaxed text-black/80"
-                    >
-                      "{testimonial.quote}"
-                    </p>
-                  </div>
-                  <a
-                    href={testimonial.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 pt-2 group/avatar"
-                  >
-                    <Avatar className="!size-12 border border-black/10">
-                      {testimonial.avatarUrl && (
-                        <AvatarImage src={testimonial.avatarUrl} alt={testimonial.name} />
-                      )}
-                      <AvatarFallback>{initials(testimonial.name)}</AvatarFallback>
-                    </Avatar>
-                    <div className="text-left">
-                      <span
-                        id={`card-${testimonial.id}-title`}
-                        className="block text-[15px] font-semibold tracking-tight text-black group-hover/avatar:text-blue-600 transition-colors"
-                      >
-                        {testimonial.name}
-                      </span>
-                      <span className="block text-[13px] text-black/50">{testimonial.role}</span>
-                      <span className="block text-[12px] text-black/35 font-mono mt-0.5">
-                        {testimonial.relation}
-                      </span>
-                    </div>
-                  </a>
-                </CardTransformed>
-              ))}
-            </CardsContainer>
-          </div>
-        </ContainerScroll>
       </div>
+
+      <SlidingTestimonials testimonials={TESTIMONIALS} />
     </section>
   );
 };

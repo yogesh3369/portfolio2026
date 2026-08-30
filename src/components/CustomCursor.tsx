@@ -56,7 +56,7 @@ export const CustomCursor = () => {
 
   return (
     <>
-      {/* Inner dot — snaps immediately */}
+      {/* Inner dot - snaps immediately */}
       <div
         ref={dotRef}
         style={{
@@ -75,7 +75,7 @@ export const CustomCursor = () => {
           willChange: 'left, top',
         }}
       />
-      {/* Outer ring — lerps behind the dot */}
+      {/* Outer ring - lerps behind the dot */}
       <div
         ref={ringRef}
         style={{

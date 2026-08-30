@@ -152,7 +152,7 @@ export const PasswordProtect: React.FC<PasswordProtectProps> = ({
                 This one's for the right eyes only.
               </h1>
               <p className="text-[15px] text-black/55 leading-relaxed">
-                The Prism case study is password protected — it contains details about internal
+                The Prism case study is password protected - it contains details about internal
                 design process and systems. Reach out if you'd like access.
               </p>
             </div>

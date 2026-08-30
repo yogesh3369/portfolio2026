@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hide default cursor on mouse devices — custom cursor takes over */
+/* Hide default cursor on mouse devices - custom cursor takes over */
 @media (pointer: fine) {
   *, *::before, *::after {
     cursor: none !important;
@@ -31,6 +31,42 @@ body {
 
 .blink {
   animation: blink 1s step-end infinite;
+}
+
+@keyframes x-slider {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(calc(-50% - 1.25rem));
+  }
+}
+
+.animate-x-slider {
+  animation: x-slider 40s linear infinite;
+}
+
+.x-slider-track:hover > .animate-x-slider {
+  animation-play-state: paused;
+}
+
+@keyframes toast-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 4px) scale(0.96);
+  }
+  12%, 78% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -4px) scale(0.98);
+  }
+}
+
+.toast-pop {
+  animation: toast-pop 1.8s ease forwards;
 }
 
 @keyframes gradientShift {

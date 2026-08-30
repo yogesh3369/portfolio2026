@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTypewriter } from '../hooks/useTypewriter';
 
 export const HeroSection = () => {
   const [showButtons, setShowButtons] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+  const copyTimerRef = useRef<number | null>(null);
 
   const { displayed, done } = useTypewriter({
     text: "I design with methodology depth and systems thinking. Three years in, increasingly engineering-adjacent. Let's build something intentional.",
@@ -20,14 +22,10 @@ export const HeroSection = () => {
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('yogesh.ai.ux@gmail.com');
+    setEmailCopied(true);
+    if (copyTimerRef.current) window.clearTimeout(copyTimerRef.current);
+    copyTimerRef.current = window.setTimeout(() => setEmailCopied(false), 1800);
   };
-
-  const whitePillButtons = [
-    'View my work',
-    'Read case studies',
-    'See my process',
-    'Download resume',
-  ];
 
   return (
     <section className="relative z-1 h-screen flex flex-col justify-end pb-12 md:justify-center md:pb-0 px-5 sm:px-8 md:px-10 overflow-hidden">
@@ -71,7 +69,7 @@ export const HeroSection = () => {
             color: 'rgba(0, 0, 0, 0.85)',
           }}
         >
-          Product Designer — systems thinker, OOUX practitioner
+          Product Designer - systems thinker, OOUX practitioner
         </div>
 
         {/* Typewriter text - body copy with breathing room */}
@@ -94,43 +92,53 @@ export const HeroSection = () => {
 
         {/* Action pill buttons */}
         <div
-          className="flex flex-wrap gap-y-1"
+          className="flex flex-row flex-nowrap items-center"
           style={{
             opacity: showButtons ? 1 : 0,
             transform: showButtons ? 'translateY(0)' : 'translateY(8px)',
             transition: 'opacity 0.4s ease, transform 0.4s ease',
           }}
         >
-          {whitePillButtons.map((label) => (
-            <button
-              key={label}
-              className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] hover:bg-black hover:text-white transition-colors duration-200"
-              style={{ whiteSpace: 'nowrap' }}
-            >
-              {label}
-            </button>
-          ))}
-
-          <button
-            onClick={handleCopyEmail}
-            className="inline-flex items-center justify-center text-white bg-transparent border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] gap-2 sm:gap-3 hover:bg-white hover:text-black transition-colors duration-200"
+          <a
+            href="/Yogesh_Yadav_UX_Designer.pdf"
+            download="Yogesh_Yadav_UX_Designer.pdf"
+            className="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] hover:bg-black hover:text-white transition-colors duration-200"
             style={{ whiteSpace: 'nowrap' }}
           >
-            <span>
-              Email: <span className="underline" style={{ textDecorationSkipInk: 'none', textUnderlineOffset: '1px' }}>yogesh.ai.ux@gmail.com</span>
-            </span>
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="inline-block"
+            Download resume
+          </a>
+
+          <div className="relative inline-block mx-[0.2em] mb-[0.4em]">
+            <button
+              onClick={handleCopyEmail}
+              className="inline-flex items-center justify-center text-white bg-transparent border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] gap-2 sm:gap-3 hover:bg-white hover:text-black transition-colors duration-200"
+              style={{ whiteSpace: 'nowrap' }}
             >
-              <rect x="3" y="3" width="8" height="8" stroke="currentColor" strokeWidth="1" fill="none" />
-              <rect x="1" y="1" width="8" height="8" stroke="currentColor" strokeWidth="1" fill="none" />
-            </svg>
-          </button>
+              <span>
+                Email: <span className="underline" style={{ textDecorationSkipInk: 'none', textUnderlineOffset: '1px' }}>yogesh.ai.ux@gmail.com</span>
+              </span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="inline-block"
+              >
+                <rect x="3" y="3" width="8" height="8" stroke="currentColor" strokeWidth="1" fill="none" />
+                <rect x="1" y="1" width="8" height="8" stroke="currentColor" strokeWidth="1" fill="none" />
+              </svg>
+            </button>
+
+            {emailCopied && (
+              <span
+                key={Date.now()}
+                className="toast-pop absolute -top-9 left-1/2 bg-black text-white text-[12px] font-medium px-3 py-1.5 rounded-full whitespace-nowrap pointer-events-none"
+              >
+                Email copied
+              </span>
+            )}
+          </div>
         </div>
       </div>
       </div>
