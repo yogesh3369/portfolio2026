@@ -58,7 +58,7 @@ export const ProjectsSection = () => {
     <section id="work" className="relative z-1">
 
       {/* Section Header */}
-      <div className="pt-32 pb-12 px-5 sm:px-8 md:px-10">
+      <div className="pt-32 pb-0 px-5 sm:px-8 md:px-10">
         <div className="max-w-[1200px] mx-auto w-full space-y-5">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-[13px] text-black/50 font-mono">

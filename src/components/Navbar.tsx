@@ -87,12 +87,13 @@ export const Navbar = () => {
           </div>
 
           {/* Desktop CTA */}
-          <button
-            onClick={() => handleNavClick('Contact')}
-            className="relative z-10 hidden md:block text-[15px] lg:text-[16px] text-black font-medium transition-all duration-300 cursor-pointer bg-transparent border border-black/10 hover:bg-black hover:text-white px-6 py-2.5 rounded-full mr-1 sm:mr-2"
+          <a
+            href="/Yogesh_Yadav_UX_Designer.pdf"
+            download="Yogesh_Yadav_UX_Designer.pdf"
+            className="relative z-10 hidden md:block text-[15px] lg:text-[16px] text-black font-medium transition-all duration-300 cursor-pointer bg-transparent border border-black/10 hover:bg-black hover:text-white px-6 py-2.5 rounded-full mr-1 sm:mr-2 whitespace-nowrap"
           >
-            Get in touch
-          </button>
+            Download resume
+          </a>
 
           {/* Mobile Hamburger */}
           <button
@@ -135,12 +136,14 @@ export const Navbar = () => {
             {link}
           </button>
         ))}
-        <button
-          onClick={() => handleNavClick('Contact')}
+        <a
+          href="/Yogesh_Yadav_UX_Designer.pdf"
+          download="Yogesh_Yadav_UX_Designer.pdf"
+          onClick={() => setMobileMenuOpen(false)}
           className="text-[32px] font-medium text-black underline text-left"
         >
-          Get in touch
-        </button>
+          Download resume
+        </a>
       </div>
     </>
   );
