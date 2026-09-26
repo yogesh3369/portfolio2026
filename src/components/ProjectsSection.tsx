@@ -39,7 +39,7 @@ function StackingCard({
         <ProjectCard
           project={project}
           index={index}
-          locked={project.slug === 'prism-design-system'}
+          locked={project.slug === 'prism-design-system' || project.slug === 'air-gift-voucher'}
         />
       </motion.div>
     </div>

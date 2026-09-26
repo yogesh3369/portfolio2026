@@ -4,6 +4,7 @@ import { playUnlock, playError } from '../hooks/useSoundEffects';
 interface PasswordProtectProps {
   children: React.ReactNode;
   correctPassword: string;
+  caseStudyName?: string;
 }
 
 const wrongMessages = [
@@ -17,7 +18,8 @@ const wrongMessages = [
 
 export const PasswordProtect: React.FC<PasswordProtectProps> = ({ 
   children, 
-  correctPassword 
+  correctPassword,
+  caseStudyName = 'Prism',
 }) => {
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -100,7 +102,7 @@ export const PasswordProtect: React.FC<PasswordProtectProps> = ({
           You're in.
         </h2>
         <p className="unlock-sub text-white/50 text-[15px] mb-8">
-          Opening the Prism case study…
+          Opening the {caseStudyName} case study…
         </p>
         <div className="flex items-center gap-2">
           <span className="dot-1 w-2 h-2 rounded-full bg-white/40 block" />
@@ -152,7 +154,7 @@ export const PasswordProtect: React.FC<PasswordProtectProps> = ({
                 This one's for the right eyes only.
               </h1>
               <p className="text-[15px] text-black/55 leading-relaxed">
-                The Prism case study is password protected - it contains details about internal
+                The {caseStudyName} case study is password protected - it contains details about internal
                 design process and systems. Reach out if you'd like access.
               </p>
             </div>

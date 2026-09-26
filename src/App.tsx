@@ -5,7 +5,7 @@ import { Navbar } from './components/Navbar';
 import { HomePage } from './pages/HomePage';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { ProtectedPrismCaseStudy } from './components/ProtectedPrismCaseStudy';
-import { AirGVCaseStudy } from './components/AirGVCaseStudy';
+import { ProtectedAirGVCaseStudy } from './components/ProtectedAirGVCaseStudy';
 import { CustomCursor } from './components/CustomCursor';
 import { ScrollProgressIndicator } from './components/ScrollProgressIndicator';
 import { playClick } from './hooks/useSoundEffects';
@@ -26,7 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/work/prism-design-system" element={<ProtectedPrismCaseStudy />} />
-          <Route path="/work/air-gift-voucher" element={<AirGVCaseStudy />} />
+          <Route path="/work/air-gift-voucher" element={<ProtectedAirGVCaseStudy />} />
           <Route path="/work/:projectSlug" element={<ProjectDetail />} />
         </Routes>
       </div>
